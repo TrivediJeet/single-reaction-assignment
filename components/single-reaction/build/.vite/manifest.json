@@ -1,0 +1,8 @@
+{
+  "src/elements/single-reaction.ts": {
+    "file": "single-reaction.js",
+    "name": "single-reaction",
+    "src": "src/elements/single-reaction.ts",
+    "isEntry": true
+  }
+}

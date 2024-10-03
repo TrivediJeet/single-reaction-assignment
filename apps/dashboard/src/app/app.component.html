@@ -1,0 +1,22 @@
+<style>
+  :host {
+    --bright-blue: oklch(51.01% 0.274 263.83);
+  }
+  .main {
+    width: 672px;
+  }
+  .sample-post {
+    border-radius: 4px;
+    margin-top: 40px;
+    width: 100%;
+    height: 500px;
+    border: 1px solid black;
+  }
+</style>
+
+<main class="main">
+    <div class="sample-post"></div>
+    <single-reaction></single-reaction>
+</main>
+
+<router-outlet />
