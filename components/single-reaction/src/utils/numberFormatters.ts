@@ -3,7 +3,6 @@ export function formatCount(count: number): string {
     { divider: 1, suffix: "" },
     { divider: 1e3, suffix: "K" },
     { divider: 1e6, suffix: "M" },
-    // Add more ranges for B (billions), T (trillions), etc. if needed
   ];
 
   const range = ranges.find((range) => count < range.divider * 1e3);

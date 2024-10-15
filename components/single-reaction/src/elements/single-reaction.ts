@@ -1,9 +1,10 @@
-import { LitElement, css, html } from "lit";
+import { LitElement,html } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { when } from "lit/directives/when.js";
 import "./emoji-picker";
 import "./reaction-pills";
 import { reactions, ReactionsMap } from "..";
+import { globalColors } from "../styles/colors";
 
 @customElement("single-reaction")
 export class SingleReaction extends LitElement {
@@ -22,11 +23,9 @@ export class SingleReaction extends LitElement {
     this._showEmojiPicker = !this._showEmojiPicker;
   }
 
-  static styles = css`
-    .container {
-      display: inline-block;
-    }
-  `;
+  static styles = [
+    globalColors,
+  ];
 
   render() {
     const filteredReactions: ReactionsMap = new Map(
@@ -36,20 +35,18 @@ export class SingleReaction extends LitElement {
     );
 
     return html`
-        ${when(
-          this._showEmojiPicker,
-          () => html`
-            <emoji-picker
-              @emoji-selected=${this._onEmojiSelected}
-            ></emoji-picker>
-          `
-        )}
+      ${when(
+        this._showEmojiPicker,
+        () => html`
+          <emoji-picker @emoji-selected=${this._onEmojiSelected}></emoji-picker>
+        `
+      )}
 
-        <reaction-pills
-          .reactions=${filteredReactions}
-          @toggle-picker=${this._togglePicker}
-          @reaction-selected=${this._onReactionSelected}
-        ></reaction-pills>
+      <reaction-pills
+        .reactions=${filteredReactions}
+        @toggle-picker=${this._togglePicker}
+        @reaction-selected=${this._onReactionSelected}
+      ></reaction-pills>
     `;
   }
 
