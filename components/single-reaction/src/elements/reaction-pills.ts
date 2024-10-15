@@ -30,65 +30,73 @@ export class ReactionPills extends LitElement {
 
   static styles = css`
     .container {
+      margin-top: 50vh;
       display: flex;
       flex-wrap: wrap;
       gap: 4px;
       background-color: #ffffff;
       border-radius: 4px;
-      border: 1px solid #cccccc;
+      border: 1px solid var(--color-border-primary);
       padding: 16px;
       font-size: 12px;
     }
+
     .emoji-pill {
       user-select: none;
       display: grid;
       grid-template-columns: auto auto;
-      align-items: end;
+      align-items: center;
       gap: 4px;
       justify-content: center;
       padding: 8px 12px;
-      border: 1px solid #cccccc;
+      border: 1px solid var(--color-border-primary);
       border-radius: 80px;
-      background-color: #fafafa;
+      background-color: var(--color-background-secondary);
+      color: var(--color-text-primary);
     }
     .emoji-pill.picker {
-        gap: 0;
-        grid-template-columns: auto;
+      grid-template-columns: auto;
+    }
+    picker-svg {
+      --svg-color: black;
+    }
+    .picker:hover picker-svg {
+      --svg-color: #027baf;
+    }
+    .picker:focus picker-svg {
+      --svg-color: #027baf;
     }
     .emoji-pill:active {
-      background-color: #e9f7fc;
-      border-color: #027baf;
-      color: #027baf;
+      background-color: var(--color-blue-050);
+      border-color: var(--color-blue-700);
+      color: var(--color-blue-700);
     }
-    .emoji-pill:hover {
-      color: red;
+    .emoji-pill:hover, .emoji-pill:focus {
       background-color: #ffffff;
       cursor: pointer;
-    }
-    .emoji {
-      display: inline-block;
-    }
-    .count {
-      color: #484848;
+      color: var(--color-blue-700);
+      border: 1px solid var(--color-blue-700);
+      outline: none;
     }
   `;
 
   render() {
     return html`
       <div class="container">
-        <div class="emoji-pill picker" @click=${this._onTogglePicker}>
+        <button class="emoji-pill picker" @click=${this._onTogglePicker}>
           <picker-svg></picker-svg>
-        </div>
+        </button>
         ${Array.from(this.reactions.entries()).map(
           ([name, reaction]) =>
             html`
-              <div
+              <button
+                title=${reaction.count + name}
                 class="emoji-pill"
                 @click=${() => this._onReactionSelected(name)}
               >
                 <span class="emoji"> ${reaction.unicode} </span>
                 <span class="count"> ${formatCount(reaction.count)} </span>
-              </div>
+              </button>
             `
         )}
       </div>

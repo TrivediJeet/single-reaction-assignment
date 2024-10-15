@@ -13,19 +13,19 @@ export class PickerSvg extends LitElement {
     svg {
       margin-left: 1px;
     }
-    svg:hover .update-stroke {
-      stroke: #027baf;
+    svg .update-stroke {
+      stroke: var(--svg-color);
     }
-    svg:hover .update-fill {
-      fill: #027baf;
+    svg .update-fill {
+      fill: var(--svg-color);
     }
   `;
 
   render() {
     return html`
       <svg
-        width="16"
-        height="16"
+        width="18"
+        height="18"
         viewBox="0 0 16 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

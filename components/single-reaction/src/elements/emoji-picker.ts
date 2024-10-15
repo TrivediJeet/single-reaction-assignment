@@ -26,7 +26,8 @@ export class EmojiPicker extends LitElement {
     }
     .emoji-grid {
       position: absolute;
-      bottom: 0;
+      bottom: 2px;
+      border: 1px solid var(--color-border-primary);
       max-width: 264px;
       min-width: 192px;
       background-color: #ffffff;
@@ -35,17 +36,23 @@ export class EmojiPicker extends LitElement {
       gap: 12px;
       padding: 12px;
       border-radius: 4px;
-      margin-bottom: 2px;
-      border: 1px solid #cccccc;
     }
     .emoji {
+      width: 24px;
+      height: 24px;
       text-align: center;
       cursor: pointer;
       border-radius: 4px;
-      transition: all 0.2s;
     }
-    .emoji:hover {
-      background-color: #d4eff9;
+    .remove-button-styling {
+      background-color: #ffffff;
+      padding: 0;
+      border: unset;
+      outline: unset;
+    }
+    .emoji:hover,.emoji:focus {
+      outline: 1px solid var(--color-border-primary);
+      background-color: var(--color-blue-100);
     }
   `;
 
@@ -54,13 +61,13 @@ export class EmojiPicker extends LitElement {
       <div class="emoji-grid">
         ${this.emojiList.map(
           ([name, emoji]) => html`
-            <span
-              class="emoji"
+            <button
+              class="emoji remove-button-styling"
               title="${name}"
               @click=${() => this._onEmojiSelected(name)}
             >
               ${emoji}
-            </span>
+            </button>
           `
         )}
       </div>
